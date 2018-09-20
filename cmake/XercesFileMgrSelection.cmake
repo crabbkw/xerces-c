@@ -20,9 +20,9 @@
 # file manager
 
 set(xerces_filemgr_default "POSIX")
-if(WIN32)
-  set(xerces_filemgr_default "windows")
-endif()
+#if(WIN32)
+#  set(xerces_filemgr_default "windows")
+#endif()
 
 set(file-manager "${xerces_filemgr_default}" CACHE STRING "File manager")
 set(filemgr "${file-manager}")

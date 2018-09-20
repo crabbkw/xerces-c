@@ -88,6 +88,9 @@ string(REPLACE "." ";" interface_version_parts "${xerces_c_interface_version}")
 list(GET interface_version_parts 0 INTERFACE_VERSION_MAJOR)
 list(GET interface_version_parts 1 INTERFACE_VERSION_MINOR)
 
+add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+add_definitions(/ZW)
+
 set(INTERFACE_VERSION_D "${INTERFACE_VERSION_MAJOR}.${INTERFACE_VERSION_MINOR}")
 set(INTERFACE_VERSION_U "${INTERFACE_VERSION_MAJOR}_${INTERFACE_VERSION_MINOR}")
 
@@ -177,8 +180,8 @@ install(
 # Process subdirectories
 add_subdirectory(doc)
 add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(samples)
+#add_subdirectory(tests)
+#add_subdirectory(samples)
 
 # Display configuration summary
 message(STATUS "")

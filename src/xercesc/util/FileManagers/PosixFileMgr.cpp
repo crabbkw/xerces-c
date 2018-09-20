@@ -74,7 +74,8 @@ PosixFileMgr::fileOpen(const char* path, bool toWrite, MemoryManager* const /*ma
 FileHandle
 PosixFileMgr::openStdIn(MemoryManager* const /*manager*/)
 {
-    return (FileHandle)fdopen(dup(0), "rb");
+	return (FileHandle)nullptr;
+    // return (FileHandle)fdopen(dup(0), "rb");
 }
 
 
@@ -205,7 +206,7 @@ PosixFileMgr::getFullPath(const XMLCh* const srcPath, MemoryManager* const manag
     XMLCh* ret = XMLString::transcode(absPath, manager);
 #else
     // get the absolute path
-    char *absPath = realpath(newSrc, NULL);
+	char *absPath = NULL; // realpath(newSrc, NULL);
     if(!absPath)
         ThrowXMLwithMemMgr(XMLPlatformUtilsException, XMLExcepts::File_CouldNotGetBasePathName, manager);
 
@@ -223,7 +224,7 @@ PosixFileMgr::getCurrentDirectory(MemoryManager* const manager)
     char dirBuf[PATH_MAX + 2];
     char *curDir = getcwd(&dirBuf[0], PATH_MAX + 1);
 #else
-    char *curDir = getcwd(NULL, 0);
+	char *curDir = NULL; // getcwd(NULL, 0);
 #endif
 
     if (!curDir)

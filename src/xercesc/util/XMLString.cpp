@@ -324,7 +324,7 @@ void XMLString::catString(char* const target, const char* const src)
 
 int XMLString::compareIString(const char* const str1, const char* const str2)
 {
-    return stricmp(str1, str2);
+    return _stricmp(str1, str2);
 }
 
 
@@ -347,7 +347,7 @@ int XMLString::compareNIString( const   char* const     str1
     if (!count)
         return 0;
 
-    return strnicmp(str1, str2, count);
+    return _strnicmp(str1, str2, count);
 }
 
 
@@ -591,7 +591,7 @@ bool XMLString::startsWith(const char* const toTest, const char* const prefix)
 bool XMLString::startsWithI(const   char* const toTest
                             , const char* const prefix)
 {
-    return (strnicmp(toTest, prefix, strlen(prefix)) == 0);
+    return (_strnicmp(toTest, prefix, strlen(prefix)) == 0);
 }
 
 
