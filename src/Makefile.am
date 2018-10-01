@@ -61,6 +61,7 @@ EXTRA_DIST = CMakeLists.txt \
         xercesc/NLS \
         xercesc/util/Xerces_autoconf_config.hpp.cmake.in \
         xercesc/util/XercesVersion.hpp.cmake.in \
+        xercesc/util/version.rc.cmake.in \
         xercesc/util/MsgLoaders/ICU/resources
 
 libxerces_c_la_LIBADD = ${LTLIBOBJS}
@@ -171,6 +172,11 @@ endif
 if XERCES_USE_MUTEXMGR_NOTHREAD
 libxerces_c_la_SOURCES += ${nothreadmmgr_sources}
 nobase_libxerces_c_la_HEADERS += ${nothreadmmgr_headers}
+endif
+
+if XERCES_USE_MUTEXMGR_STD
+libxerces_c_la_SOURCES += ${stdmmgr_sources}
+nobase_libxerces_c_la_HEADERS += ${stdmmgr_headers}
 endif
 
 if XERCES_USE_MUTEXMGR_POSIX
@@ -743,6 +749,7 @@ util_sources = \
 	xercesc/util/EncodingValidator.cpp \
 	xercesc/util/HeaderDummy.cpp \
 	xercesc/util/HexBin.cpp \
+        xercesc/util/JanitorExports.cpp \
 	xercesc/util/KVStringPair.cpp \
 	xercesc/util/Mutexes.cpp \
 	xercesc/util/PanicHandler.cpp \
@@ -1116,6 +1123,12 @@ nothreadmmgr_headers = \
 
 nothreadmmgr_sources = \
 	xercesc/util/MutexManagers/NoThreadMutexMgr.cpp
+
+stdmmgr_headers = \
+	xercesc/util/MutexManagers/StdMutexMgr.hpp
+
+stdmmgr_sources = \
+	xercesc/util/MutexManagers/StdMutexMgr.cpp
 
 posixmmgr_headers = \
 	xercesc/util/MutexManagers/PosixMutexMgr.hpp
